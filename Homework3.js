@@ -1,87 +1,84 @@
-// 1. Given an array․ Compute the length of the array. (without using .length)
+//1. Given an array. Write a recursive function that removes the first element and returns the given array. (without using arr.unshift(),assign second element to first, third element to second...)
 
-function findlengthof (arr) {
-    return arr.push(arr.pop())
-}
-
-// 2. Given an array of numbers. Print the sum of the elements in array.
-
-function sum (arr) {
-    let sum = 0
-    for(let i = 0; i < arr.length; i++) {
-        sum += arr[i]
+function removeFirst(arr, i = 0){
+    if (arr.length === 0 || arr.length === 1){
+        return []
     }
-    return sum
-}
-
-// 3. Given two numbers. Print powers of 2 between that numbers. (without using Math.pow)
-
-let start = +prompt('num1')
-let end = +prompt('num2')
-let arr = []
-for(;start<=end; start++) {
-    arr.push(start)
-    for(let i = 0; i < end;i++) {
-        if (start === 2**i) {
-            console.log(start)
-        }
-        
-    }
-    
-}
-
-// or
-
-function findpowerof2 (start,end) {
-    for(;start<=end; start++) {
-    arr.push(start)
-    for(let i = 0; i < end;i++) {
-        if (start === 2**i) {
-            console.log(start)
-        }   
-    } 
-}
-}
-
-// 4. Given a number as input, insert dashes (-) between each two even numbers.
-
-let num = prompt('tiv')
-let res = [num[0]]
-for(let i = 0;i<num.length-1;i++) {
-    if (num[i]%2===0 && num[i+1]%2===0) {
-        res.push('-',num[i+1])
+    if (i === arr.length - 1){
+        arr.pop()
+        return arr
     } else {
-        res.push(num[i+1])
+        arr[i] = arr[i + 1]
     }
+    removeFirst(arr, i + 1)
+    return arr
 }
-let res1 = ''
-for(let j = 0; j<res.length;j++ ) {
-    res1+=res[j]
+
+// Nuyn arajadranq@ loopov
+
+function removeFirstWithLoop(arr){
+    let res = []
+    for(let i = 1; i < arr.length; i++){
+        res.push(arr[i])
+    }
+    return res
 }
-console.log(res1)
 
-// 5.Insert a n positive number. Print the n-st prime number.
+//2. Given an array of nested arrays. Write a recursive function that flattens it. (Hint create function that concats arrays).
 
-function isPrime(num) {
-    if (num<=1) {
-        return false
-    } else if(num % 2 === 0 && num > 2) {
-        return false
-    } else {
-        for(let i = 3; i <=Math.sqrt(num); i+=2) {
-            if (num % i === 0) {
-                return false
-            }
+function flatten (arr){
+    let res = []
+    arr.forEach(el => {
+        if (Array.isArray(el)){
+            flatten(el).forEach(el => res.push(el))
+        } else {
+            res.push(el)
         }
-        return true
-    }
+    })
+    return res
 }
 
-let num = +prompt('tiv')
-let arr = []
-for(let start =2;arr.length<=num;start++) {
-    if (isPrime(start)) {
-        arr.push(start)
+//3. Given an array and a number N. Write a recursive function that rotates an array N places to the left. (Hint: to add element to the beginning use arr.unshift())
+
+function toTheLeft(arr, N){
+    if (arr[N - 1] === arr[arr.length - 1]){
+        return arr
     }
+    arr.unshift(arr[arr.length - 1])
+    arr.pop()
+    return toTheLeft(arr, N + 1)
 }
-console.log(arr[num-1])
+
+// Nuyn arajadranq@ methodnerov
+
+function toLeftWithoutRec (arr, N){
+    let res = arr.splice(0,N)
+    return arr.concat(res)
+}
+
+//4. Given the list of the following readers:
+//Output the books sorted by the percent in descending order which readStatus is true.
+let arr = [
+    { book: 'Catcher in the Rye', readStatus: true, percent: 40},
+    { book: 'Animal Farm', readStatus: true, percent: 20},
+    { book: 'Solaris', readStatus: false, percent: 90 },
+    { book: 'The Fall', readStatus: true, percent: 50 },
+    { book: 'White Nights', readStatus: false, percent: 60 } ,
+    { book: 'After Dark', readStatus: true, percent: 70 }
+    ]
+
+arr.filter(function (el){
+    return el.readStatus === true
+}).sort(function(a, b){
+    return b.percent - a.percent
+})
+
+//5. Implement "map" method for plain objects (same as Array map method.)
+
+function customMapOnObj(fn){
+    let res = {}
+    for(let key in this){
+        res[key] = fn(this[key])
+    }
+    return res
+}
