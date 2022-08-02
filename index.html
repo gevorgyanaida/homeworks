@@ -1,21 +1,41 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <title>Portfolio</title>
-    <link rel ="stylesheet" href ="style.css">  
+    <title>USA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id ="h1" >Portfolio</h1>
-    <div>
-        <img id ="photo"src="https://ichef.bbci.co.uk/news/976/cpsprodpb/A20B/production/_123138414_1ae36bae-44c9-4277-89a0-7b41aaca2cdb.jpg" alt="my photo">
-        <p class ="p">Aida Gevorgyan</p>
+    <h1>Information About The USA</h1>
+    <div id="options">
+        <select name="drilldowns" id="drilldowns">
+            <option value="Nation" selected>Nation</option>
+            <option value="State">State</option>
+        </select>
+        <select name="measures" id="measures">
+            <option value="Average Wage" selected>Average Wage</option>
+            <option value="Median Age">Median Age</option>
+            <option value="Population">Population</option>
+            <option value="Poverty Rate">Poverty Rate</option>
+            <option value="Property Value">Property Value</option>
+            <option value="Veterans">Veterans</option>
+        </select>
+        <select name="year" id="year">
+            <option value="all" selected>All</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+        </select>
+        <button id="submit">Submit</button>
     </div>
-    <div>
-        <h2 id ="h2">Biography</h2>
-        <p class ="p">DOB. 12/27/2004</p>
-        <p class ="p">Education - Mesrop Mashtots Extended Day Educational Complex, 11th grade</p>
-        <p class ="p">Language skills - Armenian, Russian, English fluently, French beginner</p>
-        <p class ="p">Work - None</p>
+    <div id="results">
+        <div id="forDrilldowns"></div>
+        <div id="forMeasures"></div>
+        <div id="forYear"></div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
