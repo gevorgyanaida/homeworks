@@ -31,16 +31,20 @@ function arrOfNodes(tree, res = []){
 //3. Implement binary search.
 
 function myBinarySearch(arr, x){
-    let middle = arr[Math.floor((arr.length - 1) / 2)]
-     if (middle === x){
-         return 'Element found'
-     }
-    if (arr.length === 0){
-        return 'Element not found'
+    let middleIndex = Math.floor((arr.length - 1) / 2)
+    if(arr[middleIndex] === x){
+        return 'Found x'
     }
-    if (middle > x){
-         return myBinarySearch(arr.slice(0, arr.indexOf(middle)), x)
-     } else {
-         return myBinarySearch(arr.slice(arr.indexOf(middle) + 1),x)
-     }
+    if(arr.length === 2){
+       if((arr[0] === x) || (arr[1] === x)){
+           return 'Found x'
+       }else{
+           return 'x not found'
+       }
+    }
+    if(x > arr[middleIndex]){
+        return myBinarySearch(arr.slice(middleIndex), x)
+    } else {
+        return myBinarySearch(arr.slice(0, middleIndex), x)
+    }
 }
