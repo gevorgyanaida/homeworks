@@ -44,24 +44,3 @@ function myBinarySearch(arr, x){
          return myBinarySearch(arr.slice(arr.indexOf(middle) + 1),x)
      }
 }
-
-// Binary Search version 2
-
-function myBinarySearch(arr, x, origArr = [...arr]){
-    let middle = Math.floor((arr.length - 1) / 2)
-     if (arr[middle] === x){
-         for(let i = 0; i < origArr.length; i++){
-             if (x === origArr[i]){
-                 return i
-             }
-         }
-     }
-    if (arr.length === 0){
-        return 'Element is not found'
-    }
-    if (arr[middle] > x){
-         return myBinarySearch(arr.slice(0, middle), x, origArr)
-     } else {
-         return myBinarySearch(arr.slice(middle + 1), x, origArr)
-     }
-}
