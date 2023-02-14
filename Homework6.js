@@ -49,7 +49,7 @@ function myBinarySearch(arr, x){
     }
 }
 
-function binarySearch(arr, target, min, max){
+function binarySearch(arr, target, min = 0, max = arr.length - 1){
     let mid = Math.floor((min + max)/2)
     if(target === arr[mid]){
         return mid
@@ -64,7 +64,7 @@ function binarySearch(arr, target, min, max){
     }
 }
 
-function binarySearchWithIteration(arr, target, min, max){
+function binarySearchWithIteration(arr, target, min = 0, max = arr.length - 1){
     while(min <= max){
         let mid = Math.floor((min + max)/2)
         if(target === arr[mid]){
